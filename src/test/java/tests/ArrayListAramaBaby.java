@@ -10,7 +10,7 @@ import utilities.YenidenKullanilabilirMetotlar;
 
 import java.time.Duration;
 
-public class ArrayListArama {
+public class ArrayListAramaBaby {
     WebDriver driver;
     // Yeniden kullanılabilir metotları içeren sınıfımızdan bir nesne oluşturuyoruz.
     YenidenKullanilabilirMetotlar reusableMetotlar;
