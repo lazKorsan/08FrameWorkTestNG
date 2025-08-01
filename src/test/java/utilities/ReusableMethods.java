@@ -8,13 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.*;
-import java.util.Set;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
@@ -97,6 +95,8 @@ public class ReusableMethods {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
     }
 
 
@@ -346,6 +346,25 @@ public class ReusableMethods {
             default:
                 return null;
         }
+    }
+
+    public List<Map<String, String>> getTableData() {
+        List<Map<String, String>> tableData = new ArrayList<>();
+        List<WebElement> rows = (List<WebElement>) Driver.getDriver().findElements(By.xpath("//table//tr"));
+
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.xpath(".//td"));
+            if (cells.size() >= 2) {
+                Map<String, String> rowData = new HashMap<>();
+                rowData.put("Property", cells.get(0).getText());
+                rowData.put("Value", cells.get(1).getText());
+                tableData.add(rowData);
+            }
+        }
+        return tableData;
+    }
+
+    private void findElements(By xpath) {
     }
 }
 
